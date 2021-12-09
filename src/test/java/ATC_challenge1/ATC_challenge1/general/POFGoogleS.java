@@ -7,6 +7,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
 public class POFGoogleS {
 	
 	public WebDriver driver;
@@ -21,28 +25,33 @@ public class POFGoogleS {
 		this.driver = pdriver;
 	}
 	
+	@Given("User launch Chrome browser")
 	public void user_launch_chrome_browser() {
 		System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
 		driver = new ChromeDriver ();
 		driver.manage().window().maximize(); 
 	}
 	
+	@When("User opens URL: {string}")
 	public void user_opens_url (String URL)
 	{
 		driver.get(URL);
 	}
 	
+	@When("User types in the search box the criteria {string}")
 	public void user_types_in_the_search_box_the_criteria(String inputText) 
 	{
 		driver.findElement(searchinputfield).clear();
 		driver.findElement(searchinputfield).sendKeys(inputText);
 	}
 	
+	@When("User clic on the search button")
 	public void user_clic_on_the_search_button()
 	{
 		driver.findElement(searchbtn).click();
 	}
 	
+	@Then("User clic the first result on the list if contains the criteria")
 	public void user_clic_the_first_result_on_the_list_if_contains_the_criteria() {
 		List<WebElement> list = driver.findElements(By.tagName("h3")); 
 		
@@ -58,6 +67,7 @@ public class POFGoogleS {
 		
 	}
 	
+	@Then("The user close browser")
 	public void the_user_close_browser() {
 	    driver.quit();
 	}

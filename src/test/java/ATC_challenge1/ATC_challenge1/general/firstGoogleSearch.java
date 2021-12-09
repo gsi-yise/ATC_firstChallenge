@@ -33,7 +33,7 @@ public class firstGoogleSearch {
 		
 		//driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
 		
-		fgsObject.the_user_close_browser();
+		//fgsObject.the_user_close_browser();
 
 	}
 	
